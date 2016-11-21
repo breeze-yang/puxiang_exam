@@ -16,7 +16,9 @@ Rails.application.configure do
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = :memory_store
+    # config.cache_store = :memory_store
+    config.cache_store = YAML.load(IO.read(Rails.root.join("config", "cache_store.yml").to_s))["development"]
+
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800'
     }

@@ -1,0 +1,9 @@
+development:
+  - :redis_store
+  - "redis://localhost:6379/1/dev"
+
+test:
+  - :redis_store
+  - "redis://localhost:6379/2/dev"
+
+production:

@@ -1,3 +1,15 @@
+=begin
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| password   | varchar(32) | NO   |     | NULL    |                |
+| username   | varchar(32) | NO   | UNI | NULL    |                |
+| mobile     | int(11)     | NO   | UNI | NULL    |                |
+| created_at | datetime    | NO   |     | NULL    |                |
+| updated_at | datetime    | NO   |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+=end
 class User < ApplicationRecord
 
   include UserFinders
