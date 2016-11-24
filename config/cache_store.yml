@@ -7,3 +7,5 @@ test:
   - "redis://localhost:6379/2/dev"
 
 production:
+  - :redis_store
+  - "redis://localhost:6379/3/dev"

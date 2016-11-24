@@ -45,6 +45,13 @@ class ApiResult
     new(code, msg, data)
   end
 
+  ##
+  # 类方法
+  # 返回参数错误的的api result
+  def self.params_error_result(data = {})
+    new(Constants::ErrorCode::ERROR_INVALID_PARAMES, nil, data)
+  end
+
   def to_s
     "ApiResult{code: #{self.code}, msg: '#{self.msg}', data: #{data.inspect}"
   end

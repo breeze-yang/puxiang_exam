@@ -11,7 +11,7 @@
 #
 default: &default
   adapter: mysql2
-  encoding: utf8
+  encoding: utf8mb4
   pool: 5
   username: root
   password:
@@ -52,6 +52,7 @@ test:
 #
 production:
   <<: *default
-  database: demo_production
-  username: demo
-  password: <%= ENV['DEMO_DATABASE_PASSWORD'] %>
+  database: demo_development
+  username: root
+  password: 123456
+  host: localhost

@@ -1,7 +1,7 @@
 ##
 # 用户查找方法
 #
-#  User.by_mobile('18620011234')
+#  User.by_email('123@qq.com')
 #
 #  User.by_uname('hello')
 #
@@ -12,22 +12,17 @@ module UserFinders
   extend ActiveSupport::Concern
 
   module ClassMethods
-    ##
-    # 查找指定user_id的用户, 支持二级缓存
-    def by_user_id(user_id)
-      self.fetch_by_uniq_keys(id: user_id)
-    end
 
     ##
-    # 查找指定手机号的用户, 支持二级缓存
-    def by_mobile(mobile)
-      self.fetch_by_uniq_keys(mobile: mobile)
+    # 查找指定邮箱的用户, 支持二级缓存
+    def by_email(email)
+      self.fetch_by_uniq_keys(email: email)
     end
 
     ##
     # 查找指定用户名的用户, 支持二级缓存
     def by_uname(uname)
-      self.fetch_by_uniq_keys(user_name: uname)
+      self.fetch_by_uniq_keys(username: uname)
     end
 
   end

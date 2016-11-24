@@ -1,0 +1,14 @@
+<p>
+  <strong>username:</strong>
+</p>
+
+<p>
+  <strong>body:</strong>
+  <%= reply.body %>
+</p>
+
+<p>
+  <%= link_to 'Destroy Comment', [reply.meetup, reply],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+</p>

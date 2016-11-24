@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Language" content="zh-cn">
+</head>
+<body>
+
+  <p><%= @user.username %>, 您好：</p>
+
+  <p>我们收到您的注册请求，欢迎您注册BREEZE IN。</p>
+
+  <p>请点击下面的链接完成您的注册流程：</p>
+
+  <p>
+    <a href="test.com">test.com</a>
+  </p>
+
+  <p>如果点击后无法打开新页面，您也可以复制上述地址再粘贴到浏览器地址栏内打开。</p>
+
+  <p>下面是您的注册信息：邮箱地址：<%= @user.email %> 用户名：<%= @user.username %> </p>
+
+  <p>BREEZE IN社区: <%= Time.now.strftime("%Y-%m-%d") %></p>
+
+</body>
+</html>
+

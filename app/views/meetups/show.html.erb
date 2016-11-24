@@ -1,0 +1,36 @@
+<% content_for :title, @meetup.title %>
+
+<div class="row">
+  <div class="col-md-9">
+    <div class="panel panel-info">
+      <div class="panel-heading media clearfix">
+        <div class="media-body">
+          <h1 class="media-heading"><%= @meetup.title %></h1>
+          <div class="info">
+            <%= @meetup.user.username%>
+            ·
+            发布于 <%= timeago(@meetup.created_at)%>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <div>
+          <%= simple_format @meetup.body %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md-9">
+
+  </div>
+</div>
+
+
+<h2>replies</h2>
+<%= render @meetup.replies %>
+
+<h2>Add a reply:</h2>
+<%= render "replies/form" %>
