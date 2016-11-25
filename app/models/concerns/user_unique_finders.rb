@@ -16,7 +16,7 @@ module UserUniqueFinders
     #     User.username_exists?('abc123', 123)
     def username_exists?(username, exclude_user_id = nil)
       user = User.by_uname(username)
-      user.present? and (exclude_user_id.blank? or user.user_uuid != exclude_user_id)
+      user.present? and (exclude_user_id.blank? or user.id != exclude_user_id)
     end
 
     ##
@@ -28,7 +28,7 @@ module UserUniqueFinders
     #     类似 username_exists?
     def email_exists?(email, exclude_user_id = nil)
       user = User.by_email(email)
-      user.present? and (exclude_user_id.blank? or user.user_uuid != exclude_user_id)
+      user.present? and (exclude_user_id.blank? or user.id != exclude_user_id)
     end
 
   end

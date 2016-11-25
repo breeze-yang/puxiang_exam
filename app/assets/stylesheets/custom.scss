@@ -296,3 +296,89 @@ span.picture {
 .jumbotron {
   background-color: #ffffff;
 }
+
+.meetups {
+  .meetup {
+    min-height: 68px;
+    border-bottom: 1px solid #F0F0F0;
+    padding: 10px 15px;
+    margin: 0 -15px;
+    vertical-align: top;
+
+    .info {
+      color: #ABA8A6;
+      font-size: 12px;
+      margin-top: 0;
+
+      a { color: #ABA8A6; }
+    }
+
+    .count {
+      width: 100px; text-align: right; padding-top: 15px;
+      a:link,
+      a:hover,
+      a:visited {
+        line-height: 11px;
+        color: #fff;
+        min-width: 32px;
+        text-align: center;
+        border-radius: 80px; padding: 3px 8px 3px 8px;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      a:link { background: #CFD3E6; }
+      a:hover { background: #A9BBDC; }
+      a.state-true,
+      a:visited { background: #f0f0f0; }
+    }
+  }
+}
+
+#replies .reply {
+  margin: 0 -15px;
+  padding: 15px 15px;
+  position: relative;
+  border-bottom: 1px solid #eee;
+}
+#replies .reply .info{
+  color:#999;
+  margin-bottom:6px;
+  font-size:12px;
+}
+#replies .reply .info .name{
+  font-weight:bold;
+  font-size:13px
+}
+#replies .reply .info .name a{
+  color:#555
+}
+#replies .reply .info .reply-floor{
+  color:#7AA87A
+}
+abbr[title] {
+  border-bottom: 0px;
+  cursor: text;
+}
+
+.avatar-48 { width: 48px; height: 48px; border-radius: 120px; }
+.avatar-96 { width: 96px; height: 96px; border-radius: 120px; }
+
+.no-result {
+  color: #aaa;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.panel {
+  .panel-heading {
+    background: #fafafa;
+    padding: 6px 15px;
+    border-bottom-color: #eee;
+    color: #777;
+  }
+}
+
+.pagination {
+  margin: 0;
+}

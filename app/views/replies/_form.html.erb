@@ -1,9 +1,9 @@
 <%= form_for([@meetup, @meetup.replies.build]) do |f| %>
-    <p>
-      <%= f.label :body %><br>
-      <%= f.text_area :body %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
+    <div class="form-group">
+      <%= f.text_area :body, class: 'form-control', placeholder: '进行回复吧～', rows: 4 %>
+    </div>
+
+    <div class="form-group">
+    <%= f.submit "提交回复", class: "btn btn-primary col-xs-2" %>
+    </div>
 <% end %>

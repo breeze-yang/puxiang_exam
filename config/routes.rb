@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root   'home#index'
+  root   'meetups#index'
 
   resource :account, controller: :account
   scope :account do

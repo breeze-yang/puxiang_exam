@@ -1,0 +1,25 @@
+<div class="panel-heading media clearfix">
+  <div class="media-body">
+    <h1 class="media-heading"><%= meetup.title %></h1>
+    <div class="info">
+      <%= link_to meetup.user.username, '#' %>
+      ·
+      发布于 <%= timeago(meetup.created_at)%>
+    </div>
+  </div>
+</div>
+
+<div class="panel-body">
+  <div>
+    <%= simple_format meetup.body %>
+  </div>
+</div>
+
+<div class="panel-footer">
+  <div>
+
+    <%= likeable_tag %>
+    <%= favorite_tag %>
+
+  </div>
+</div>

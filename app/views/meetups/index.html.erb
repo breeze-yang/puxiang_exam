@@ -1,19 +1,38 @@
-<h1>Listing Meetups</h1>
-<%= link_to 'New meetup', new_meetup_path %>
+<% content_for :title, '最近聚会' %>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th colspan="2"></th>
-  </tr>
+<div class="row">
+  <div class="col-md-9">
+    <div class="meetups panel panel-default">
+      <div class="panel-body item-list">
+        <%= render partial: 'meetup', collection: @meetups %>
+      </div>
 
-  <% @meetups.each do |meetup| %>
-      <tr>
-        <td><%= link_to meetup.title, meetup_path(meetup) %></td>
-        <td><%= meetup.body %></td>
-        <td><%= link_to 'Edit', edit_meetup_path(meetup) %></td>
-        <td><%= link_to 'Destroy', meetup_path(meetup), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-  <% end %>
-</table>
+      <div class="panel-footer clearfix">
+        <%= will_paginate @meetups %>
+      </div>
+    </div>
+  </div> <!--class="col-md-9"-->
+
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= link_to "我也要发聚会！", new_meetup_path, class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">公告</div>
+      <div class="panel-body">
+        三年二班李小明同学你的妈妈拿着两罐旺仔牛奶在校门口等你<br/><br/>
+        儿子；‘妈妈！’<br/><br/>
+        妈妈：“乖儿子！看妈妈带什么来了？”<br/><br/>
+        儿子；“什么啊？”<br/><br/>
+        妈妈：“旺仔牛奶！绝对不含三聚氰胺，但是蛋白质还是够量！一口气跑100000米，不费劲！”<br/><br/>
+        儿子：“哇塞！让我喝一口........哎呦哎呦哎呦！怎么这么好喝！”<br/><br/>
+        妈妈：“好喝吧、、、今年过节不收礼啊、、、收礼只后旺仔牛奶！！！”<br/><br/>
+        绝对不含三聚氰胺哦！我喝我放心，做母亲挺好的！<br/>
+      </div>
+    </div>
+  </div> <!--class="col-md-3"-->
+
+</div>   <!--class="row"-->

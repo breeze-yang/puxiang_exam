@@ -15,19 +15,23 @@ class UserValidator < ActiveModel::Validator
   end
 
   def username_valid?(user)
+    return unless user.username_changed?
+
     result = User.username_format_valid?(user.username)
     if result.is_failure?
       return [ result.data[:error_detail] ]
     end
 
-    ['用户名已被注册'] if User.username_exists?(user.username)
+    ['用户名已被注册'] if User.username_exists?(user.username, user.id)
   end
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   def email_valid?(user)
+    return unless user.email_changed?
+
     return ['邮箱格式不对'] unless user.email.match VALID_EMAIL_REGEX
 
-    ['邮箱已被注册'] if User.email_exists?(user.email)
+    ['邮箱已被注册'] if User.email_exists?(user.email, user.id)
   end
 
   def self.is_email?(email)

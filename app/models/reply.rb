@@ -15,5 +15,5 @@ class Reply < ApplicationRecord
   validates :user_id, :meetup_id, :body, presence: true
 
   belongs_to :user
-  belongs_to :meetup
+  belongs_to :meetup, counter_cache: true
 end

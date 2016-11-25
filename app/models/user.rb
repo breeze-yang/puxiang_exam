@@ -24,6 +24,7 @@ class User < ApplicationRecord
   validates_with UserValidator
 
   has_many :meetups
+  has_many :replies
 
   def self.new_token
     SecureRandom.urlsafe_base64

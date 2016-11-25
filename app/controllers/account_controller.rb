@@ -1,6 +1,6 @@
 class AccountController < ApplicationController
   def new
-    flash[:info] = '请注意:这个demo，会发送邮箱，但没有箱邮激活操作'
+    flash.now[:info] = '请注意:这个demo，会发送邮箱，但没有箱邮激活操作'
     @user = User.new
   end
 

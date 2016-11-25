@@ -1,0 +1,21 @@
+<div class="meetup media meetup-<%= meetup.id %>">
+  <div class="avatar media-left">
+    <%= link_to gravatar_for(meetup.user, size: 50), '#' %>
+  </div>
+
+  <div class="infos media-body">
+    <div class="title media-heading">
+      <%= link_to(truncate(meetup.title, length: 100), meetup_path(meetup), title: meetup.title) %>
+    </div>
+
+    <div class="info">
+      由 <%= link_to meetup.user.username, '#' %>
+      •<%= timeago(meetup.created_at) %>创建
+    </div>
+  </div>
+
+  <div class="count media-right">
+    <%= link_to(meetup.replies_count,"#{meetup_path(meetup)}#reply#{meetup.replies_count}", class: "state-false") %>
+  </div>
+
+</div>

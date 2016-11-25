@@ -2,35 +2,32 @@
 
 <div class="row">
   <div class="col-md-9">
-    <div class="panel panel-info">
-      <div class="panel-heading media clearfix">
-        <div class="media-body">
-          <h1 class="media-heading"><%= @meetup.title %></h1>
-          <div class="info">
-            <%= @meetup.user.username%>
-            ·
-            发布于 <%= timeago(@meetup.created_at)%>
+    <div id="meetup_detail" class="panel panel-info">
+      <%= render "meetup_info", meetup: @meetup %>
+    </div>
+
+    <% if @meetup.replies.blank? %>
+        <div class="no-result">
+          <%= "没有任何回复喔～" %>
+        </div>
+    <% else %>
+        <div id="replies" class="panel panel-info">
+          <div class="panel-heading">
+            共收到 <b><%= @meetup.replies_count %></b> 条回复
+          </div>
+          <div class="panel-body">
+            <%= render partial: "/replies/reply", collection: @meetup.replies %>
           </div>
         </div>
-      </div>
+    <% end %>
 
+    <div id="reply" class="panel panel-info">
+      <div class="panel-heading hide-ios">回帖</div>
       <div class="panel-body">
-        <div>
-          <%= simple_format @meetup.body %>
-        </div>
+        <%= render "replies/form" %>
       </div>
-
     </div>
-  </div>
 
-  <div class="col-md-9">
+  </div> <!--class="col-md-9"-->
+</div>   <!--class="row"-->
 
-  </div>
-</div>
-
-
-<h2>replies</h2>
-<%= render @meetup.replies %>
-
-<h2>Add a reply:</h2>
-<%= render "replies/form" %>

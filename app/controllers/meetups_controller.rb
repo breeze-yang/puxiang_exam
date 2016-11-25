@@ -16,7 +16,7 @@ class MeetupsController < ApplicationController
   end
 
   def create
-    @meetup = current_user.meetups.build(meetup_params)
+    @meetup = current_user.meetups.new(meetup_params)
     if @meetup.save
       flash[:success] = '发布成功！'
       redirect_to @meetup
@@ -45,7 +45,7 @@ class MeetupsController < ApplicationController
   end
   
   def index
-    @meetups = Meetup.limit(30)
+    @meetups = Meetup.paginate(page: params[:page], per_page: 5)
   end
 
   private
