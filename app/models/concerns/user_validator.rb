@@ -6,12 +6,8 @@
 class UserValidator < ActiveModel::Validator
 
   def validate(user)
-    errors = [
-        username_valid?(user).to_a,
-        email_valid?(user).to_a,
-    ].flatten
-
-    errors.each { |error| user.errors.add :base, error }
+    username_valid?(user)
+    email_valid?(user)
   end
 
   def username_valid?(user)
@@ -19,23 +15,29 @@ class UserValidator < ActiveModel::Validator
 
     result = User.username_format_valid?(user.username)
     if result.is_failure?
-      return [ result.data[:error_detail] ]
+      return user.errors.add :username, result.data[:error_detail]
     end
 
-    ['用户名已被注册'] if User.username_exists?(user.username, user.id)
+    if User.username_exists?(user.username, user.id)
+      user.errors.add :username, '用户名已被注册'
+    end
   end
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   def email_valid?(user)
     return unless user.email_changed?
 
-    return ['邮箱格式不对'] unless user.email.match VALID_EMAIL_REGEX
+    unless user.email.match VALID_EMAIL_REGEX
+      return  user.errors.add :email,  '邮箱格式不对'
+    end
 
-    ['邮箱已被注册'] if User.email_exists?(user.email, user.id)
+    if User.email_exists?(user.email, user.id)
+      user.errors.add :email, '邮箱已被注册'
+    end
   end
 
   def self.is_email?(email)
-    email.match(VALID_EMAIL_REGEX).present?
+    email.to_s.match(VALID_EMAIL_REGEX).present?
   end
 
 end

@@ -1,6 +1,6 @@
 class RepliesController < ApplicationController
   before_action :logged_in_user,  only: [:create, :destroy]
-  before_action :set_topic
+  before_action :set_meetup
 
   def create
     @reply = @meetup.replies.new(reply_params)
@@ -25,7 +25,7 @@ class RepliesController < ApplicationController
     params.require(:reply).permit(:body)
   end
 
-  def set_topic
+  def set_meetup
     @meetup = Meetup.find(params[:meetup_id])
   end
   

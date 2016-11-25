@@ -11,11 +11,7 @@
 #
 default: &default
   adapter: mysql2
-  encoding: utf8mb4
   pool: 5
-  username: root
-  password:
-  host: localhost
 
 development:
   <<: *default
@@ -30,6 +26,9 @@ development:
 test:
   <<: *default
   database: demo_test
+  username: root
+  password: 123456
+  host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
