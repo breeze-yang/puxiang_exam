@@ -4,18 +4,26 @@ module Api
     class SessionsController < Api::V1::ApplicationController
 
       ##
-      # 分不同的登录类型
-      # 用相对冗余的代码换更高的可扩展性
+      # 登录
+      # POST /api/v1/login
+      #
+      # @param login_type [Enum]    uname | email
+      # @param account    [String]  uname | email
+      # @param password   [String]
       def create
         login_type = params[:login_type]
         unless LOGIN_TYPES.include?(login_type)
           return render_api_error(Constants::ErrorCode::UNSUPPORTED_LOGIN_TYPE)
         end
 
+
         send("login_by_#{login_type}", params)
       end
 
       protected
+      ##
+      # 分不同的登录类型
+      # 用相对冗余的代码换更高的可扩展性
       def login_by_uname(params)
         account = params[:account]
         passwd  = params[:password]
