@@ -1,24 +1,13 @@
-# README
+# 简要部署流程
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1.创建相应的数据库，并默认utf8字符集。<br>
+&nbsp;&nbsp;例： CREATE DATABASE `demo_production` DEFAULT CHARACTER SET utf8 
 
-Things you may want to cover:
+2.运行migration
 
-* Ruby version
+3.将下列两个example的配置文件修改好即可:
 
-* System dependencies
+* config/database.rb.example
 
-* Configuration
+* config/cache_store.rb.example
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
