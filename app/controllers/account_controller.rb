@@ -7,6 +7,7 @@ class AccountController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      log_in @user
       # 发送email应使用后台任务
       @user.send_activation_email
       flash[:info] = '恭喜你，注册成功。（邮件激活步骤已省去）'

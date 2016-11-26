@@ -3,7 +3,12 @@
 /log/
 /tmp/*
 /tmp/
+/public/
+/public/*
 !/log/.keep
 !/tmp/.keep
 .byebug_history
 /.idea/*
+
+/config/database.yml
+/config/cache_store.yml

@@ -51,7 +51,7 @@ test:
 #
 production:
   <<: *default
-  database: demo_development
+  database: demo_production
   username: root
   password: 123456
   host: localhost
