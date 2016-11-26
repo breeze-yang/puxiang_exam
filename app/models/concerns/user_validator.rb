@@ -19,7 +19,7 @@ class UserValidator < ActiveModel::Validator
     end
 
     if User.username_exists?(user.username, user.id)
-      user.errors.add :username, '用户名已被注册'
+      user.errors.add :username, I18n.t('errors.detail.username_exist')
     end
   end
 
@@ -28,11 +28,11 @@ class UserValidator < ActiveModel::Validator
     return unless user.email_changed?
 
     unless user.email.match VALID_EMAIL_REGEX
-      return  user.errors.add :email,  '邮箱格式不对'
+      return  user.errors.add :email, I18n.t('errors.detail.invalid_email_format')
     end
 
     if User.email_exists?(user.email, user.id)
-      user.errors.add :email, '邮箱已被注册'
+      user.errors.add :email, I18n.t('errors.detail.email_exist')
     end
   end
 

@@ -1,14 +1,15 @@
 =begin
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| id         | int(11)      | NO   | PRI | NULL    | auto_increment |
-| password   | varchar(32)  | NO   |     | NULL    |                |
-| username   | varchar(32)  | NO   | UNI | NULL    |                |
-| email      | varchar(255) | NO   | UNI | NULL    |                |
-| created_at | datetime     | NO   |     | NULL    |                |
-| updated_at | datetime     | NO   |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
++-----------------+--------------+------+-----+---------+----------------+
+| Field           | Type         | Null | Key | Default | Extra          |
++-----------------+--------------+------+-----+---------+----------------+
+| id              | int(11)      | NO   | PRI | NULL    | auto_increment |
+| username        | varchar(32)  | NO   | UNI | NULL    |                |
+| password_digest | varchar(255) | NO   |     | NULL    |                |
+| email           | varchar(255) | NO   | UNI | NULL    |                |
+| created_at      | datetime     | NO   |     | NULL    |                |
+| updated_at      | datetime     | NO   |     | NULL    |                |
+| remember_digest | varchar(255) | YES  |     | NULL    |                |
++-----------------+--------------+------+-----+---------+----------------+
 =end
 class User < ApplicationRecord
   include UserFinders

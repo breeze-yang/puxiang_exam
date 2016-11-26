@@ -17,17 +17,19 @@ class AppAccessToken
   include ActiveModel::AttributeAssignment
   # 支持修改检查
   include ActiveModel::Dirty
-  # 支持json序列化
+  # 支持json序列化定义的属性
   include ActiveModel::Serializers::JSON
 
   # 定义属性方法
   define_attribute_method :access_token
   define_attribute_method :client_ip
   define_attribute_method :app_key
+  define_attribute_method :app_secret
   define_attribute_method :user_id
 
-  attr_accessor :access_token, :client_ip, :app_key, :user_id
+  attr_accessor :access_token, :client_ip, :app_key, :app_secret, :user_id, :_is_new
 
+  # will_change!是为了触发标记属性被修改了
   def access_token=(value)
     access_token_will_change!
     @access_token = value
@@ -43,6 +45,11 @@ class AppAccessToken
     @app_key = value
   end
 
+  def app_secret=(value)
+    app_secret_will_change!
+    @app_secret = value
+  end
+
   def user_id=(value)
     user_id_will_change!
     @user_id = value
@@ -54,7 +61,7 @@ class AppAccessToken
     if changed?
       changes_applied
       if self._is_new || exist?(cache_key)
-        save_to_storage cache_key, serializable_hash.to_json, expires_in: ACCESS_TOKEN_TTL
+        save_to_storage cache_key, to_json, expires_in: ACCESS_TOKEN_TTL
         self._is_new = false
         return true
       end
@@ -69,23 +76,18 @@ class AppAccessToken
     not exist?(cache_key)
   end
 
-  ##
-  # 强制对令牌延续有效期
-  # 如果令牌不存在, 返回 false
-  # 成功则返回 true
-  def touch
-    expire cache_key, ACCESS_TOKEN_TTL
-  end
-
+  # 配合to_json使用
   def attributes
     {
         access_token: nil,
-        client_ip: nil,
-        app_key: nil,
-        user_id: nil
+        client_ip:    nil,
+        app_key:      nil,
+        app_secret:   nil,
+        user_id:      nil
     }
   end
 
+  # 配合from_json使用
   def attributes=(hash)
     hash.each do |key, value|
       send("#{key}=", value)
@@ -94,16 +96,26 @@ class AppAccessToken
 
   ##
   # 创建新的令牌
-  def self.create(client_ip, app_key, user_id)
+  def self.create(client_ip, app_key, app_secret, user_id)
     app_access_token = self.new
-    app_access_token._is_new = true
+    app_access_token._is_new      = true
     app_access_token.access_token = "#{SecureRandom.hex(16)}"
-    app_access_token.client_ip = client_ip
-    app_access_token.app_key = app_key
-    app_access_token.user_id = user_id
+    app_access_token.client_ip    = client_ip
+    app_access_token.app_key      = app_key
+    app_access_token.app_secret   = app_secret
+    app_access_token.user_id      = user_id
     app_access_token.save
     app_access_token
   end
+
+  ##
+  # 强制对令牌延续有效期
+  # 如果令牌不存在, 返回 false
+  # 成功则返回 true
+  def touch
+    expire cache_key, ACCESS_TOKEN_TTL
+  end
+
 
   ##
   # 根据令牌串获取令牌, 如果令牌已过期则返回 nil
@@ -112,6 +124,7 @@ class AppAccessToken
     if json
       app_access_token = self.new
       app_access_token.from_json json
+      # 因为clear_changes_information 是一个私有方法，所以要使用send才能调用
       app_access_token.send(:clear_changes_information)
       app_access_token
     else
@@ -121,7 +134,7 @@ class AppAccessToken
 
   private
   def self.cache_key(access_token)
-    "coreapi:access_token:#{access_token}"
+    "demo:access_token:#{access_token}"
   end
 
   def cache_key

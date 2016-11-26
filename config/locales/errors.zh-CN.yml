@@ -1,0 +1,22 @@
+"zh-CN":
+  errors:
+    #http错误码
+    http_absence_credential:        "请求缺少身份信息"
+    http_invalid_credential:   "无效的请求身份信息"
+    http_access_token_expired: "access_token 已失效"
+    http_credentail_not_match: "请求身份不匹配"
+
+
+    #账号系统模块错误信息
+    missing_params:         "缺少参数"
+    invalid_params:         "参数有误;"
+    unsupported_login_type: "不支持的登录类型"
+    invalid_account_or_pwd: "无效的账号或密码"
+
+    # 参数错误详情
+    detail:
+      username_exist:          "用户名已被注册"
+      invalid_username_length: "用户名的长度应在1到32的范围"
+      blocked_username:        "该用户名为敏感词"
+      invalid_email_format:    "邮箱格式不对"
+      email_exist:             "邮箱已被注册"

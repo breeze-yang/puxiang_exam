@@ -7,7 +7,7 @@ Rails.application.configure do
   config.cache_classes = false
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
   config.consider_all_requests_local = true
@@ -15,7 +15,7 @@ Rails.application.configure do
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
-    config.cache_store = YAML.load(IO.read(Rails.root.join("config", "cache_store.yml").to_s))["development"]
+    config.cache_store =  config_for(:cache_store)
 
     config.public_file_server.headers = {
       'Cache-Control' => 'public, max-age=172800'

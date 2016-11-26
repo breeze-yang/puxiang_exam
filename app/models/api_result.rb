@@ -26,30 +26,27 @@ class ApiResult
   end
 
   ##
-  # 类方法, 返回缺省的成功对象, 用于避免内存中生成过多的默认成功实例
+  # 返回缺省的成功对象, 用于避免内存中生成过多的默认成功实例
   def self.success
     @success_api_result ||= new.freeze
   end
 
   ##
-  # 类方法
   # 根据给定的data, 返回成功的api result
   def self.success_with_data(data)
     new(Constants::ErrorCode::SUCCESS_CALL, nil, data)
   end
 
   ##
-  # 类方法
   # 返回给定的错误码的api result
   def self.error_result(code, msg = nil, data = {})
     new(code, msg, data)
   end
 
   ##
-  # 类方法
   # 返回参数错误的的api result
   def self.params_error_result(data = {})
-    new(Constants::ErrorCode::ERROR_INVALID_PARAMES, nil, data)
+    new(Constants::ErrorCode::INVALID_PARAMES, nil, data)
   end
 
   def to_s

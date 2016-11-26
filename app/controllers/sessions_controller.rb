@@ -22,6 +22,8 @@ class SessionsController < ApplicationController
   private
   def distinguish_user
     account =  session_params[:account]
+    return if account.blank?
+
     if UserValidator.is_email?(account)
       User.by_email(account)
     else

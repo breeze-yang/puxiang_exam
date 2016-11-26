@@ -1,4 +1,4 @@
-class MeetupsController < ApplicationController
+  class MeetupsController < ApplicationController
 
   before_action :logged_in_user,  only: [:new, :create, :edit, :update, :destroy]
   before_action :set_meetup,  only: [:show, :edit, :update, :destroy]

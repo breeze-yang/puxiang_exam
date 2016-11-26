@@ -27,12 +27,12 @@ module UsernameValidator
     def username_format_valid?(username)
       username = username.to_s.strip
       unless username.size.in? 1..32
-        error = '用户名的长度应在1到32的范围'
+        error = I18n.t('errors.detail.invalid_username_length')
         return ApiResult.params_error_result(error_detail: error)
       end
 
       if username.in? BLOCK_USERNAME_KEYWORDS
-        error = '该用户名为敏感词'
+        error = I18n.t('errors.detail.blocked_username')
         return ApiResult.params_error_result(error_detail: error)
       end
 

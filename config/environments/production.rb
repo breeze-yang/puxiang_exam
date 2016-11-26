@@ -50,7 +50,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = YAML.load(IO.read(Rails.root.join("config", "cache_store.yml").to_s))["development"]
+  config.cache_store =  config_for(:cache_store)
 
 
   # Use a real queuing backend for Active Job (and separate queues per environment)

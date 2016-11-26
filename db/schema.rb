@@ -10,7 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125030611) do
+ActiveRecord::Schema.define(version: 20161126125754) do
+
+  create_table "affiliate_apps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "affiliate_id"
+    t.string   "app_id",       limit: 50,                           comment: "用来描述该app"
+    t.string   "app_name",     limit: 100,                          comment: "用来描述该app"
+    t.string   "app_key",      limit: 36,                           comment: "访问接口所有的app_key"
+    t.string   "app_secret",   limit: 36,                           comment: "app所有的secret"
+    t.integer  "status",                   default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.index ["affiliate_id"], name: "index_affiliate_apps_on_affiliate_id", using: :btree
+    t.index ["app_id"], name: "index_affiliate_apps_on_app_id", unique: true, using: :btree
+    t.index ["app_key"], name: "index_affiliate_apps_on_app_key", unique: true, using: :btree
+    t.index ["app_name"], name: "index_affiliate_apps_on_app_name", unique: true, using: :btree
+  end
+
+  create_table "affiliates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "aff_uuid",   limit: 36,                                   comment: "合作方uuid"
+    t.string   "aff_name",   limit: 100,                                  comment: "合作方名字"
+    t.string   "aff_type",   limit: 50,  default: "company",              comment: "合作方类型"
+    t.integer  "status",                 default: 0,                      comment: "合作方状态"
+    t.string   "mobile",     limit: 20,                                   comment: "合作方联系方式"
+    t.string   "memo",                                                    comment: "合作方备注"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.index ["aff_name"], name: "index_affiliates_on_aff_name", unique: true, using: :btree
+    t.index ["aff_uuid"], name: "index_affiliates_on_aff_uuid", unique: true, using: :btree
+    t.index ["mobile"], name: "index_affiliates_on_mobile", unique: true, using: :btree
+  end
 
   create_table "meetups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id",                                 null: false
@@ -42,6 +71,7 @@ ActiveRecord::Schema.define(version: 20161125030611) do
     t.index ["username"], name: "unique_username", unique: true, using: :btree
   end
 
+  add_foreign_key "affiliate_apps", "affiliates"
   add_foreign_key "replies", "meetups"
   add_foreign_key "replies", "users"
 end
