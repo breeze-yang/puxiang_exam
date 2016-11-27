@@ -13,7 +13,7 @@ RSpec.describe DemoAPI::ApiRequestCredential do
 
   describe 'match api path' do
     it 'api path should be successfully matched' do
-      uris = ['/api/users', '/api/users/1', '/api/login', '/api/_logout']
+      uris = ['///api/users', '//api/users/1', '/api/login', '/api/_logout']
       uris.each do |uri|
         response = request_credential.call({'REQUEST_URI' => uri})
         expect(response[0]).to eql(Constants::ErrorCode::HTTP_ABSENCE_CREDENTIAL)

@@ -1,6 +1,6 @@
 module DemoAPI
 
-  API_PATH_REGEX = %r(^/api/)
+  API_PATH_REGEX = %r(^/*api/)
 
   class ApiRequestCredential
     def initialize(app)
