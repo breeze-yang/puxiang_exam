@@ -8,3 +8,10 @@
 
 * config/cache_store.rb.example
 
+# 实现的功能
+
+1.用户的注册登录
+
+2.发帖功能
+
+3.评论功能
