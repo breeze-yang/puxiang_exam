@@ -16,7 +16,7 @@ class User < ApplicationRecord
   include UserUniqueFinders
   include UsernameValidator
 
-  acts_as_cached(:version => 1, :expires_in => 1.days)
+  second_level_cache(:version => 1, :expires_in => 1.days)
 
   attr_accessor :remember_token
 

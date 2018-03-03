@@ -1,7 +1,7 @@
 # source 'https://rubygems.org'
 source 'https://gems.ruby-china.org'
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.1', '>= 5.1.5'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -19,7 +19,7 @@ gem 'rails-i18n'
 gem 'redis', '~> 3.2'
 gem 'hiredis'
 gem 'redis-rails'
-gem 'second_level_cache', '~> 2.2.4'
+gem 'second_level_cache', '~> 2.3'
 
 
 # Use Capistrano for deployment

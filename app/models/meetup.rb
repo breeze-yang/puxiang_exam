@@ -11,9 +11,9 @@
 | replies_count | int(11)      | NO   |     | 0       |                |
 +---------------+--------------+------+-----+---------+----------------+
 =end
-class   Meetup < ApplicationRecord
+class Meetup < ApplicationRecord
 
-  acts_as_cached(:version => 1, :expires_in => 1.week)
+  second_level_cache(:version => 1, :expires_in => 1.week)
 
   validates :user_id, :title, :body, presence: true
 
