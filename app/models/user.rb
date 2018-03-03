@@ -60,7 +60,8 @@ class User < ApplicationRecord
   end
 
   def send_activation_email
-    AccountMailer.account_activation(self.id).deliver_now
+    # 不发送email
+    # AccountMailer.account_activation(self.id).deliver_now
   end
 
 end

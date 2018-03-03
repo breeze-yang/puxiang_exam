@@ -4,7 +4,11 @@
   <div class="col-md-9">
     <div class="meetups panel panel-default">
       <div class="panel-body item-list">
-        <%= render partial: 'meetup', collection: @meetups %>
+        <% if @meetups.blank?%>
+          <h4>暂无meetup</h4>
+        <% else %>
+          <%= render partial: 'meetup', collection: @meetups %>
+        <% end %>
       </div>
 
       <div class="panel-footer clearfix">

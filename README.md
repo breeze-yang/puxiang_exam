@@ -1,11 +1,8 @@
 # 简要部署流程
 
-1.创建相应的数据库，并默认utf8字符集。<br>
-&nbsp;&nbsp;例： CREATE DATABASE `demo_production` DEFAULT CHARACTER SET utf8 
+1.运行 rails db:setup
 
-2.运行db:migration, db:seed
-
-3.将下列两个example的配置文件修改好即可:
+2.将下列两个example的配置文件修改好即可:
 
 * config/database.rb.example
 
